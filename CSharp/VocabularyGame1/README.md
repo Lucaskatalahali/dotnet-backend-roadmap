@@ -15,3 +15,5 @@ A simple console application that quizzes the player by asking them to translate
 
 - C#
 - .NET Console Application
+
+![Vocabulary Game](image.png)
