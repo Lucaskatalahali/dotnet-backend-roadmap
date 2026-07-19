@@ -28,27 +28,6 @@ This folder contains the projects, exercises, and experiments I built while lear
 - LINQ
 - Async/Await
 - File Handling
-
-## Projects
-
-### 🎮 Translation Game
-
-A console application where the player translates English words into Portuguese by choosing the correct option.
-
-**Concepts used:**
-
-- Dictionary
-- Lists
-- Randomization
-- LINQ
-- Methods
-- Input Validation
-- Loops
-
-## Exercises
-
-Programming exercises created while studying each topic.
-
 ---
 
 More projects and exercises will be added as I progress through my learning journey.
