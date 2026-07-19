@@ -9,15 +9,17 @@ The goal is not only to learn the technology but also to apply it by building pr
 
 ## 📂 Repository Structure
 
-CSharp/
-Git/
-Algorithms-and-Data-Structures/
-HTTP/
-ASP.NET-Core/
-Entity-Framework-Core/
-SQL/
-Testing/
-Deploy/
+.
+├── CSharp/
+├── Git/
+├── Algorithms-and-Data-Structures/
+├── HTTP/
+├── ASP.NET-Core/
+├── Entity-Framework-Core/
+├── SQL/
+├── Testing/
+├── Deploy/
+└── Projects/
 
 ## 📌 About
 
