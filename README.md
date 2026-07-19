@@ -1,13 +1,38 @@
-# LucasP Code - C# Básico
+# .NET Journey
 
-Este repositório contém códigos, exercícios e pequenos projetos desenvolvidos nos vídeos do canal **LucasP Code**.
+This repository documents my learning journey through the .NET ecosystem. It contains programming exercises and projects that I build while following my own backend development roadmap.
 
-## Como usar os códigos
+The goal is not only to learn the technology but also to apply it by building practical projects and documenting my progress.
 
-Para executar os exemplos:
 
-1. Crie um projeto Console em C# no Visual Studio.
-2. Abra o arquivo `Program.cs`.
-3. Copie o código do exemplo desejado.
-4. Cole no seu projeto.
-5. Execute o programa.
+## 📂 Repository Structure
+
+```text
+.
+├── CSharp/
+├── Git/
+├── Algorithms-and-Data-Structures/
+├── HTTP/
+├── ASP.NET-Core/
+├── Entity-Framework-Core/
+├── SQL/
+├── Testing/
+├── Deploy/
+└── Projects/
+```
+
+## Technologies
+
+- C#
+- .NET
+- ASP.NET Core
+- Entity Framework Core
+- SQL Server
+- Git & GitHub
+- Swagger
+- Postman
+- xUnit
+
+## About
+
+This repository is continuously updated as I learn new concepts and complete projects.
