@@ -10,6 +10,8 @@ A C# console application that helps users practice English vocabulary through mu
 - Randomized questions
 - Score tracking
 
+![alt text](image.png)
+
 ## Concepts Used
 
 - Enums
