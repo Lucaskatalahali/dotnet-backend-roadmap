@@ -1,8 +1,8 @@
 # 🚀 .NET Journey
 
-This repository documents my learning journey through the .NET ecosystem. It contains programming exercises and projects that I build while following my own backend development roadmap.
+This repository documents my journey to become a backend .NET developer. It contains programming exercises and projects that I build while following a structured learning roadmap.
 
-The goal is not only to learn the technology but also to apply it by building practical projects and documenting my progress.
+The goal is to learn by building practical projects and documenting my progress.
 
 ## 📂 Repository Structure
 
@@ -19,4 +19,4 @@ The goal is not only to learn the technology but also to apply it by building pr
 
 ## 📌 About
 
-This repository is continuously updated as I learn new concepts and complete projects. It serves as both my learning journal and my technical portfolio.
+This repository is continuously updated as I learn new concepts and complete projects. It serves as a record of my progress and a portfolio of the projects I build during my studies.
