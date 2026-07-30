@@ -20,3 +20,4 @@ Console.WriteLine($"GetAt(1): {array.GetAt(1)}");
 
 Console.WriteLine($"IndexOf(30): {array.IndexOf(30)}");
 Console.WriteLine($"Contains(99): {array.Contains(99)}");
+Console.WriteLine($"Contains(20): {array.Contains(20)}");

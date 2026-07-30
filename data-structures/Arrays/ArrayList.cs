@@ -108,15 +108,7 @@ public class ArrayList<T>
     {
         return _count == 0;
     }
-    public bool Contains(T item)
-    {
-        for(int i = 0; i < _count; i++)
-        {
-            if(EqualityComparer<T>.Default.Equals(_items[i], item))
-            return true;
-        }   
-        return false;
-    }
+    public bool Contains(T item) => IndexOf(item) != -1;
 
     public int IndexOf(T item)
     {
