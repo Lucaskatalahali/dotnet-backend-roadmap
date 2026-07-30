@@ -79,7 +79,7 @@ public class ArrayList<T>
             _items[i] = _items[i + 1];
         }
         _count--; 
-        _items[_count] = default!; //just for good practice, because if the type is a class, Garbage Colletor may not dellete it
+        _items[_count] = default!; //just for good practice, because if the type is a reference type, Garbage Colletor may not dellete it
         return true;  
     }
     public void Clear()
