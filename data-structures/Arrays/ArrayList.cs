@@ -8,7 +8,8 @@ public class ArrayList<T>
 
     public ArrayList(int capacity)
     {
-        if
+        if(capacity <= 0)
+        throw new ArgumentOutOfRangeException(); 
         _capacity = capacity;
         _count = 0;
         _items = new T[_capacity];
@@ -78,7 +79,7 @@ public class ArrayList<T>
             _items[i] = _items[i + 1];
         }
         _count--; 
-        _items[_count] = default; //just for good practice, because if the type is a class, Garbage Colletor may not dellete it
+        _items[_count] = default!; //just for good practice, because if the type is a class, Garbage Colletor may not dellete it
         return true;  
     }
     public void Clear()
