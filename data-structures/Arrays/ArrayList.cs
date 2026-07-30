@@ -4,20 +4,33 @@ public class ArrayList<T>
 {
     private T[] _items;
     private int _count;
-    private int _capacity;
-
     public ArrayList(int capacity)
     {
         if(capacity <= 0)
         throw new ArgumentOutOfRangeException(); 
-        _capacity = capacity;
         _count = 0;
-        _items = new T[_capacity];
+        _items = new T[capacity];
     }
 
     public int Count => _count;
-    public int Capacity => _capacity;
+    public int Capacity => _items.Length;
 
+    //Access by index
+    public T this[int index]
+    {
+        get
+        {
+            if(index < 0 || index >= _count)
+            throw new IndexOutOfRangeException();
+            return _items[index];   
+        }
+        set
+        {
+            if(index < 0 || index >= _count)
+            throw new IndexOutOfRangeException();
+             _items[index] = value;  
+        }
+    }
     private void Resize(int newCapacity)
     {
         T[] newArrayList = new T[newCapacity];
@@ -27,22 +40,23 @@ public class ArrayList<T>
         }
         
         _items = newArrayList;
-        _capacity = newCapacity;
     }
 
+    //Adds an item to the end of the list
     public void Add(T item)
     {
-        AddAt(_count, item);
+        InsertAt(_count, item);
     }
 
-    public void AddAt(int index, T item)
+    public void InsertAt(int index, T item)
     {
         if(index < 0 || index > _count)
-        {
             throw new ArgumentOutOfRangeException(nameof(index));           
-        }
-        if(_count == _capacity) Resize(_capacity * 2);
+    
+        if(_count == _items.Length) 
+            Resize(_items.Length * 2);
 
+        // shifts elements to the right, from back to front
         for(int i = _count; i > index; i--)
         {
             _items[i] = _items[i - 1];
@@ -56,7 +70,6 @@ public class ArrayList<T>
         if(index < 0 || index >= _count) throw new ArgumentOutOfRangeException(nameof(index));
         return _items[index];
     }
-
     public bool Remove(T item)
     {
         if(IsEmpty()) throw new InvalidOperationException();
@@ -67,6 +80,9 @@ public class ArrayList<T>
         RemoveAt(index);
         return true;
     }
+
+    //Removes an element by index. O(n) — requires shifting elements to the
+    //right one position back to close the "gap"
     public bool RemoveAt(int index)
     {
         if(index < 0 || index >= _count)
@@ -79,7 +95,8 @@ public class ArrayList<T>
             _items[i] = _items[i + 1];
         }
         _count--; 
-        _items[_count] = default!; //just for good practice, because if the type is a reference type, Garbage Colletor may not dellete it
+        _items[_count] = default!; //just for good practice, because if the type is a reference type, 
+        //Garbage Colletor may not dellete it
         return true;  
     }
     public void Clear()
@@ -109,5 +126,17 @@ public class ArrayList<T>
             return i;
         }
         return -1;
+    }
+    public void Print()
+    {
+        Console.Write("[");
+        for(int i = 0; i < _count; i++)
+        {
+            Console.Write(_items[i]);
+            if(i != _count - 1)
+                Console.Write(", ");
+            else
+                Console.Write("]");
+        }
     }
 }
