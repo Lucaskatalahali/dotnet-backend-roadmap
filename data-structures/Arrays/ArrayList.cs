@@ -39,7 +39,7 @@ public class ArrayList<T>
     {
         if(index < 0 || index > _count)
         {
-            throw new IndexOutOfRangeException();           
+            throw new ArgumentOutOfRangeException(nameof(index));           
         }
         if(_count == _capacity) Resize(_capacity * 2);
 
@@ -53,7 +53,7 @@ public class ArrayList<T>
     
     public T GetAt(int index)
     {
-        if(index < 0 || index >= _count) throw new IndexOutOfRangeException();
+        if(index < 0 || index >= _count) throw new ArgumentOutOfRangeException(nameof(index));
         return _items[index];
     }
 
@@ -71,7 +71,7 @@ public class ArrayList<T>
     {
         if(index < 0 || index >= _count)
         {
-            throw new IndexOutOfRangeException();           
+            throw new ArgumentOutOfRangeException(nameof(index));           
         }
 
         for(int i = index; i < _count - 1; i++)
