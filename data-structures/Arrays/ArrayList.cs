@@ -8,6 +8,7 @@ public class ArrayList<T>
 
     public ArrayList(int capacity)
     {
+        if
         _capacity = capacity;
         _count = 0;
         _items = new T[_capacity];
@@ -19,7 +20,7 @@ public class ArrayList<T>
     private void Resize(int newCapacity)
     {
         T[] newArrayList = new T[newCapacity];
-        for(int i = 0; i < _count-1; i++)
+        for(int i = 0; i < _count; i++)
         {
             newArrayList[i] = _items[i];
         }
@@ -72,7 +73,7 @@ public class ArrayList<T>
             throw new IndexOutOfRangeException();           
         }
 
-        for(int i = index; i <= _count; i++)
+        for(int i = index; i < _count - 1; i++)
         {
             _items[i] = _items[i + 1];
         }
