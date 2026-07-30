@@ -3,26 +3,29 @@ namespace Arrays;
 public class ArrayList<T>
 {
     private T[] _items;
-    public int _count;
-    public int Capacity {get; private set;}
+    private int _count;
+    private int _capacity;
 
     public ArrayList(int capacity)
     {
-        Capacity = capacity;
+        _capacity = capacity;
         _count = 0;
-        _items = new T[Capacity];
+        _items = new T[_capacity];
     }
+
+    public int Count => _count;
+    public int Capacity => _capacity;
 
     private void Resize(int newCapacity)
     {
         T[] newArrayList = new T[newCapacity];
-        for(int i = 0; i < Capacity; i++)
+        for(int i = 0; i < _count-1; i++)
         {
             newArrayList[i] = _items[i];
         }
         
         _items = newArrayList;
-        Capacity = newCapacity;
+        _capacity = newCapacity;
     }
 
     public void Add(T item)
@@ -36,7 +39,7 @@ public class ArrayList<T>
         {
             throw new IndexOutOfRangeException();           
         }
-        if(_count == Capacity) Resize(Capacity * 2);
+        if(_count == _capacity) Resize(_capacity * 2);
 
         for(int i = _count; i > index; i--)
         {
@@ -48,14 +51,8 @@ public class ArrayList<T>
     
     public T GetAt(int index)
     {
-        try
-        {
-            return _items[index];
-        }
-        catch (IndexOutOfRangeException)
-        {
-            throw;
-        }
+        if(index < 0 || index >= _count) throw new IndexOutOfRangeException();
+        return _items[index];
     }
 
     public bool Remove(T item)
@@ -75,11 +72,12 @@ public class ArrayList<T>
             throw new IndexOutOfRangeException();           
         }
 
-        for(int i = index; i < _count; i++)
+        for(int i = index; i <= _count; i++)
         {
             _items[i] = _items[i + 1];
         }
         _count--; 
+        _items[_count] = default; //just for good practice, because if the type is a class, Garbage Colletor may not dellete it
         return true;  
     }
     public void Clear()
@@ -93,9 +91,9 @@ public class ArrayList<T>
     }
     public bool Contains(T item)
     {
-        foreach(T thisItem in _items)
+        for(int i = 0; i < _count; i++)
         {
-            if(EqualityComparer<T>.Default.Equals(thisItem, item))
+            if(EqualityComparer<T>.Default.Equals(_items[i], item))
             return true;
         }   
         return false;
