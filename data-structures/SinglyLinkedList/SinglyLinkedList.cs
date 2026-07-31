@@ -1,11 +1,11 @@
-using System.Drawing;
-
 namespace SinlgyLinkedList;
 
 public class SinlgyLinkedList<T>
 {
     private Node<T>? _head;
     private int _size;
+    public int Count => _size; //it will be used not as a method
+    public bool IsEmpty() => _size == 0; //it will be used as a method
     public SinlgyLinkedList()
     {
         _head = null; 
@@ -76,7 +76,7 @@ public class SinlgyLinkedList<T>
         int index = 0;
         while(temp is not null)
         {
-            if (item!.Equals(temp))
+            if (item!.Equals(temp.Data))
                 return index;
             temp = temp.Next;
         }
@@ -100,11 +100,8 @@ public class SinlgyLinkedList<T>
             return _head!.Data; //Head won't be null here
         
         Node<T>? prev = GetPreviousByIndex(_size);
-        return prev!.Next!.Data; //prev won't be null here not even Next
+        return prev!.Data; //prev won't be null here not even Next
     }
     public bool Contains(T item) => IndexOf(item) != -1;       
-
-    public bool IsEmpty() => _size == 0; //it will be used as a method
-    public int Count => _size; //it will be used not as a method
     public void Clear() => _head = null;
 }

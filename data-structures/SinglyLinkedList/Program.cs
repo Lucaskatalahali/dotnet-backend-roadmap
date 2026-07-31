@@ -12,6 +12,7 @@ Console.WriteLine(list.Count);
 list.Add(1);
 list.Add(2);
 list.Add(3);
+Console.WriteLine(list.GetLast());
 list.Add(4);
 
 
