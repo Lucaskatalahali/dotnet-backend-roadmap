@@ -1,0 +1,110 @@
+using System.Drawing;
+
+namespace SinlgyLinkedList;
+
+public class SinlgyLinkedList<T>
+{
+    private Node<T>? _head;
+    private int _size;
+    public SinlgyLinkedList()
+    {
+        _head = null; 
+        _size = 0;
+    }
+
+    //Function to get the previous Node given an index
+
+    private Node<T>? GetPreviousByIndex(int index)
+    {
+        if(index < 0 || index > _size)
+                throw new ArgumentOutOfRangeException($"Index can not be less than zero or greater than {_size}");
+
+        Node<T>? temp = _head;
+        for(int i = 0; i < index - 1; i++)
+        {
+            temp = temp?.Next;
+        }
+        return temp;
+    }
+    public void Add(T item)
+    {
+        InsertAt(_size, item);
+    }
+    public void InsertAt(int index, T item)
+    {
+        if (index == 0) 
+            _head = new Node<T>(item, _head);
+        else
+        {
+            Node<T> newNode = new(item);
+            Node <T>? prev = GetPreviousByIndex(index);
+            newNode.Next = prev?.Next;
+            prev?.Next = newNode; 
+        } 
+        _size++;
+    }
+
+    public void RemoveAt(int index)
+    {
+        if(IsEmpty())
+            throw new InvalidOperationException("It is not possible to remove elements from an empty list.");
+        
+        if(index == 0)
+        {
+            _head = _head!.Next; 
+        }
+        else
+        {
+           Node<T>? prev = GetPreviousByIndex(index); 
+           prev?.Next = prev?.Next?.Next;
+        }
+        _size--;
+    }
+    public bool Remove(T item)
+    {     
+        int index = IndexOf(item);
+        if(index == -1) 
+            return false; 
+
+        RemoveAt(index);
+        return true;
+    }
+
+    public int IndexOf(T item)
+    {
+        Node<T>? temp = _head;
+        int index = 0;
+        while(temp is not null)
+        {
+            if (item!.Equals(temp))
+                return index;
+            temp = temp.Next;
+        }
+
+        return -1;
+    }
+
+    public T GetFirst()
+    {
+        if(IsEmpty()) //here it could be if _size == 0, because isEmpty uses this conditional.
+            throw new InvalidOperationException("It is not possible to get elements from an empty list.");
+
+        return _head!.Data; //Head won't be null here
+    }
+    public T GetLast()
+    {
+        if(IsEmpty())
+            throw new InvalidOperationException("It is not possible to get elements from an empty list.");
+
+        if(_head?.Next is null) //if there is only one node in the list, return it directly
+            return _head!.Data; //Head won't be null here
+        
+        Node<T>? prev = GetPreviousByIndex(_size);
+        return prev!.Next!.Data; //prev won't be null here not even Next
+    }
+    public bool Contains(T item) => IndexOf(item) != -1;       
+
+    public bool IsEmpty() => _size == 0; //it will be used as a method
+    public int Count => _size; //it will be used not as a method
+    public void Clear() => _head = null;
+}
