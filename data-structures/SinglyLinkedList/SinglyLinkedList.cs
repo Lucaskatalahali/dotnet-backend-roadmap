@@ -95,12 +95,9 @@ public class SinlgyLinkedList<T>
     {
         if(IsEmpty())
             throw new InvalidOperationException("It is not possible to get elements from an empty list.");
-
-        if(_head?.Next is null) //if there is only one node in the list, return it directly
-            return _head!.Data; //Head won't be null here
         
-        Node<T>? prev = GetPreviousByIndex(_size);
-        return prev!.Data; //prev won't be null here not even Next
+        Node<T>? last = GetPreviousByIndex(_size);
+        return last!.Data; //prev won't be null here not even Next
     }
     public bool Contains(T item) => IndexOf(item) != -1;       
     public void Clear() => _head = null;
