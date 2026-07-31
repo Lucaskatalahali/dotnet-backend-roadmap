@@ -110,7 +110,11 @@ public class SinlgyLinkedList<T>
         return last!.Data; //last won't be null here
     }
     public bool Contains(T item) => IndexOf(item) != -1;       
-    public void Clear() => _head = null;
+    public void Clear()
+    {
+        _head = null;
+        _size = 0;
+    }
     public override string ToString()
     {
         var txt = new StringBuilder();
