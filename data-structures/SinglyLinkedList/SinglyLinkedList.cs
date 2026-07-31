@@ -54,6 +54,9 @@ public class SinlgyLinkedList<T>
     {
         if(IsEmpty())
             throw new InvalidOperationException("It is not possible to remove elements from an empty list.");
+
+        if (index < 0 || index >= _size)
+        throw new ArgumentOutOfRangeException(nameof(index));
         
         if(index == 0)
         {
