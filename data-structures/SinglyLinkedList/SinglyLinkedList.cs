@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace SinlgyLinkedList;
 
 public class SinlgyLinkedList<T>
@@ -17,7 +19,7 @@ public class SinlgyLinkedList<T>
     private Node<T>? GetPreviousByIndex(int index)
     {
         if(index < 0 || index > _size)
-                throw new ArgumentOutOfRangeException($"Index can not be less than zero or greater than {_size}");
+            throw new ArgumentOutOfRangeException(nameof(index), $"Index can not be less than zero or greater than {_size}");
 
         Node<T>? temp = _head;
         for(int i = 0; i < index - 1; i++)
@@ -39,7 +41,11 @@ public class SinlgyLinkedList<T>
             Node<T> newNode = new(item);
             Node <T>? prev = GetPreviousByIndex(index);
             newNode.Next = prev?.Next;
-            prev?.Next = newNode; 
+            prev?.Next = newNode; //This line compiles normally starting with C# 14 (.NET 10).
+
+            //Alternatively use this line if your C# version shows error:
+            /*if (prev is not null)
+            prev.Next = newNode;*/
         } 
         _size++;
     }
@@ -56,7 +62,11 @@ public class SinlgyLinkedList<T>
         else
         {
            Node<T>? prev = GetPreviousByIndex(index); 
-           prev?.Next = prev?.Next?.Next;
+           prev?.Next = prev?.Next?.Next; //This line compiles normally starting with C# 14 (.NET 10).
+
+            /* Alternatively use this line if your C# version shows error:
+            if (prev is not null)
+            prev.Next = prev.Next?.Next;*/
         }
         _size--;
     }
@@ -96,9 +106,26 @@ public class SinlgyLinkedList<T>
         if(IsEmpty())
             throw new InvalidOperationException("It is not possible to get elements from an empty list.");
         
-        Node<T>? last = GetPreviousByIndex(_size);
-        return last!.Data; //prev won't be null here not even Next
+        Node<T>? last = GetPreviousByIndex(_size); //This already returns the last node (position _size - 1).
+        return last!.Data; //last won't be null here
     }
     public bool Contains(T item) => IndexOf(item) != -1;       
     public void Clear() => _head = null;
+    public override string ToString()
+    {
+        var txt = new StringBuilder();
+        txt.Append('[');
+        Node<T>? temp = _head;
+        while(temp is not null)
+        {
+            txt.Append($"{temp.Data}"); 
+            temp = temp.Next;
+            if(temp is not null)
+                txt.Append(", ");
+            else
+                txt.Append(']'); 
+        }
+
+        return txt.ToString();
+    }
 }
