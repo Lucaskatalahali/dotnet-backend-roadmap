@@ -120,6 +120,7 @@ public class SinlgyLinkedList<T>
     }
     public override string ToString()
     {
+        if(IsEmpty()) return "";
         var txt = new StringBuilder();
         txt.Append('[');
         Node<T>? temp = _head;
