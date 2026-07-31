@@ -7,7 +7,7 @@ public class ArrayList<T>
     public ArrayList(int capacity)
     {
         if(capacity <= 0)
-        throw new ArgumentOutOfRangeException(); 
+        throw new ArgumentOutOfRangeException(nameof(capacity)); 
         _count = 0;
         _items = new T[capacity];
     }
@@ -21,13 +21,13 @@ public class ArrayList<T>
         get
         {
             if(index < 0 || index >= _count)
-            throw new IndexOutOfRangeException();
+            throw new ArgumentOutOfRangeException(nameof(index));
             return _items[index];   
         }
         set
         {
             if(index < 0 || index >= _count)
-            throw new IndexOutOfRangeException();
+            throw new ArgumentOutOfRangeException(nameof(index));
              _items[index] = value;  
         }
     }
