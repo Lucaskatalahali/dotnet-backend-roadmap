@@ -9,7 +9,12 @@
             list.Add(20);
             list.Add(30);
             Console.WriteLine($"After Add(10,20,30): {list}"); // [10, 20, 30]
+            list.Reverse();
+            Console.WriteLine($"After Reverse the list: {list}"); // [30, 20, 10]
             Console.WriteLine($"Count: {list.Count}");
+            list.Reverse();
+            Console.WriteLine($"After Reverse the list again: {list}"); // [10, 20, 30]
+
  
             Console.WriteLine("\n=== 2. InsertAt ===");
             list.InsertAt(0, 5); // insert at index 0

@@ -114,6 +114,21 @@ public class SinlgyLinkedList<T>
         _head = null;
         _size = 0;
     }
+
+    public void Reverse()
+    {
+        Node<T>? currentNode = _head;
+        Node<T>? previousNode = null;
+        Node<T>? nextNode;
+        while(currentNode is not null)
+        {
+            nextNode = currentNode.Next;
+            currentNode.Next = previousNode;
+            previousNode = currentNode;
+            currentNode = nextNode;
+        } 
+        _head = previousNode;
+    }
     public override string ToString()
     {
         if(IsEmpty()) return "";
