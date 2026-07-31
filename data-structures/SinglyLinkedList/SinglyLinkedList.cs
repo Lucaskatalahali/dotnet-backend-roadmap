@@ -13,9 +13,7 @@ public class SinlgyLinkedList<T>
         _head = null; 
         _size = 0;
     }
-
     //Function to get the previous Node given an index
-
     private Node<T>? GetPreviousByIndex(int index)
     {
         if(index < 0 || index > _size)
@@ -49,7 +47,6 @@ public class SinlgyLinkedList<T>
         } 
         _size++;
     }
-
     public void RemoveAt(int index)
     {
         if(IsEmpty())
@@ -82,7 +79,6 @@ public class SinlgyLinkedList<T>
         RemoveAt(index);
         return true;
     }
-
     public int IndexOf(T item)
     {
         Node<T>? temp = _head;
@@ -91,12 +87,12 @@ public class SinlgyLinkedList<T>
         {
             if (item!.Equals(temp.Data))
                 return index;
+            index++;
             temp = temp.Next;
         }
 
         return -1;
     }
-
     public T GetFirst()
     {
         if(IsEmpty()) //here it could be if _size == 0, because isEmpty uses this conditional.
