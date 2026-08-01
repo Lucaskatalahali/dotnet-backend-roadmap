@@ -111,12 +111,8 @@ public class DoublyLinkedList<T>
         if(IsEmpty())
             throw new InvalidOperationException("It is not possible to get elements from an empty list.");
         
-        Node<T>? current = _head;
-        while(current!.Next is not null)
-        {
-            current = current.Next;
-        }
-        return current!.Data;
+        Node<T>? last = GetPreviousByIndex(_size); //This already returns the last node (position _size - 1).
+        return last!.Data; //last won't be null here
     }
     public bool Contains(T data) => IndexOf(data) != -1;
     public void Clear()
