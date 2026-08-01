@@ -1,28 +1,5 @@
 # Vocabulary Game 2
 
-A C# console application that helps users practice English vocabulary through multiple-choice questions.
-
-## Features
-
-- Multiple difficulty levels
-- Word categories
-- Hint system
-- Randomized questions
-- Score tracking
+A simple console application that quizzes the player by asking them to translate English words into Portuguese.
 
 ![alt text](image.png)
-
-## Concepts Used
-
-- Enums
-- Records
-- Collections
-- LINQ
-- Methods
-- Input validation
-- Randomization
-
-## Technologies
-
-- C#
-- .NET Console Application
