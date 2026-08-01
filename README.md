@@ -1,4 +1,4 @@
-# 🚀 .NET Journey
+# .NET Journey
 
 Learning backend development with **C#** and **.NET** through practical implementations, projects, and coding exercises.
 
