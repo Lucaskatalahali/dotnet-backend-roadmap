@@ -27,7 +27,7 @@ public class DoublyLinkedList<T>
         } 
         return previous;
     }
-    public void Add(T data) //This function add at the end by passing size as argument to InsertAt func.
+    public void Add(T data) //This function adds at the end by passing size as argument to InsertAt func.
     {
         InsertAt(_size, data);
     }
