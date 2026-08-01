@@ -1,22 +1,20 @@
 # 🚀 .NET Journey
 
-This repository documents my journey to become a backend .NET developer. It contains programming exercises and projects that I build while following a structured learning roadmap.
+Learning backend development with **C#** and **.NET** through practical implementations, projects, and coding exercises.
 
-The goal is to learn by building practical projects and documenting my progress.
+## 📚 Topics
 
-## 📂 Repository Structure
+- C# (Fundamentals, OOP, LINQ, and more)
+- Git & GitHub
+- Data Structures & Algorithms
+- HTTP
+- ASP.NET Core
+- Entity Framework Core
+- PostgreSQL
+- REST APIs
+- Testing
+- Deployment
 
-- **CSharp** – C# exercises and console applications
-- **Git** – Git and GitHub practice
-- **Algorithms-and-Data-Structures** – Algorithms and data structure implementations
-- **HTTP** – HTTP concepts and examples
-- **ASP.NET-Core** – Web APIs and ASP.NET Core projects
-- **Entity-Framework-Core** – Entity Framework Core examples
-- **SQL** – SQL scripts and database exercises
-- **Testing** – Unit testing and API testing
-- **Deploy** – Deployment examples
-- **Projects** – Complete projects combining multiple technologies
+## 📁 Repository Structure
 
-## 📌 About
-
-This repository is continuously updated as I learn new concepts and complete projects. It serves as a record of my progress and a portfolio of the projects I build during my studies.
+Browse the folders in this repository to explore the implementation of each topic.
