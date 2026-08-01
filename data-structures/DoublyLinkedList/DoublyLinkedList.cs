@@ -1,4 +1,3 @@
-using System.Drawing;
 using System.Text;
 
 namespace DoublyLinkedList;
@@ -28,10 +27,9 @@ public class DoublyLinkedList<T>
         } 
         return previous;
     }
-
-    public void Add(T data) //This function add at the end by passing size-1 as argument to Insert func.
+    public void Add(T data) //This function add at the end by passing size as argument to InsertAt func.
     {
-        InsertAt(_size - 1, data);
+        InsertAt(_size, data);
     }
     public void InsertAt(int index, T data)
     {
@@ -58,7 +56,6 @@ public class DoublyLinkedList<T>
         }
         _size++;
     }
-
     public bool Remove(T data)
     {
         int index = IndexOf(data);
@@ -71,7 +68,10 @@ public class DoublyLinkedList<T>
     public void RemoveAt(int index)
     {
         if(IsEmpty())
-        throw new InvalidOperationException("It is not possible to remove elements from an empty list.");
+            throw new InvalidOperationException("It is not possible to remove elements from an empty list.");
+
+        if(index < 0 || index >= _size)// GetPreviousByIndex doesn't verify if index == size. We need to verify it here
+            throw new ArgumentOutOfRangeException(nameof(index)); 
 
         if(index == 0)
         {
@@ -82,7 +82,7 @@ public class DoublyLinkedList<T>
         {
             Node<T>? previous = GetPreviousByIndex(index);  
             previous?.Next = previous?.Next?.Next;
-            previous?.Next?.Previous = previous; //Here probabily we will have null pointer, but i think "?" will make it be ignored.
+            previous?.Next?.Previous = previous; //"?" makes null pointers be save here.
         }
         _size--;
     }
@@ -90,9 +90,9 @@ public class DoublyLinkedList<T>
     {
         int index = 0;
         Node<T>? current = _head;
-       while(current is not null)
+        while(current is not null)
         {
-            if(current.Equals(data))
+            if(current.Data!.Equals(data))
                 return index;
             current = current.Next;
             index++;
@@ -104,22 +104,20 @@ public class DoublyLinkedList<T>
         if(IsEmpty())
             throw new InvalidOperationException("It is not possible to get elements from an empty list.");
 
-        return _head!.Data; //head will not be negative
+        return _head!.Data; //head will not be null here
     }
-
     public T GetLast()
     {
         if(IsEmpty())
             throw new InvalidOperationException("It is not possible to get elements from an empty list.");
         
         Node<T>? current = _head;
-        while(current is not null)
+        while(current!.Next is not null)
         {
             current = current.Next;
         }
         return current!.Data;
     }
-
     public bool Contains(T data) => IndexOf(data) != -1;
     public void Clear()
     {
