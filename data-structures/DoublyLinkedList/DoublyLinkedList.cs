@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Text;
 
 namespace DoublyLinkedList;
 
@@ -119,22 +120,34 @@ public class DoublyLinkedList<T>
         return current!.Data;
     }
 
-    public bool Contains(T data)
-    {
-        Node<T>? current = _head;
-        while(current is not null)
-        {
-            if(current.Equals(data))
-            return true;
-
-            current = current.Next;
-        }
-        return false;
-    }
-    void Clear()
+    public bool Contains(T data) => IndexOf(data) != -1;
+    public void Clear()
     {
         _head = null;
         _size = 0;
     }
 
+    /*public void Reverse()
+    {
+        
+    }*/
+    public override string ToString()
+    {
+        if(IsEmpty())
+            return "";
+
+        var txt = new StringBuilder();
+        txt.Append('[');
+        Node<T>? current = _head; 
+
+        while(current is not null)
+        {
+            if(current.Next is null)
+                txt.Append($"{current.Data}]");
+            else    
+                txt.Append($"{current.Data}, ");
+            current = current.Next;
+        }
+        return txt.ToString();
+    }
 }
