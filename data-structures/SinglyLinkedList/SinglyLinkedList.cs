@@ -147,4 +147,16 @@ public class SinlgyLinkedList<T>
 
         return txt.ToString();
     }
+
+    // Private nested class to encapsulate data structure internals
+    private class Node<TNode> //TNode because the external class already uses T.
+    {
+        public TNode Data {get; }
+        public Node<TNode>? Next {get; set;}
+        public Node(TNode data, Node<TNode>? next = null)
+        {
+            Data = data;
+            Next = next;
+        }
+    }
 }
