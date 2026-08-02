@@ -44,4 +44,17 @@ public class LinkedStack<T>
         _topOfStack = null;
         _count = 0;
     }
+
+    // Private nested class to encapsulate data structure internals
+    private class Node<TNode> //TNode because the external class already uses T
+    {
+        public T Data {get;}
+        public Node<T>? Next{get; set;}
+
+        public Node(T data, Node<T>? next = null)
+        {
+            Data = data;
+            Next = next;
+        }
+    }
 }
