@@ -145,7 +145,8 @@ public class DoublyLinkedList<T>
         return txt.ToString();
     }
 
-    private class Node<TNode>
+    // Private nested class to encapsulate data structure internals
+    private class Node<TNode> //TNode because the external class already uses T.
     {
         public TNode Data {get; }
         public Node<TNode>? Next {get; set;}
