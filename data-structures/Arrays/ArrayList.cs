@@ -31,15 +31,12 @@ public class ArrayList<T>
              _items[index] = value;  
         }
     }
-    private void Resize(int newCapacity)
+    private void Resize(int newSize)
     {
-        T[] newArrayList = new T[newCapacity];
-        for(int i = 0; i < _count; i++)
-        {
-            newArrayList[i] = _items[i];
-        }
-        
-        _items = newArrayList;
+        T[] temp = new T[newSize];
+
+        Array.Copy(_items, 0, temp, 0, Count);
+        _items = temp;
     }
 
     //Adds an item to the end of the list
@@ -72,7 +69,7 @@ public class ArrayList<T>
     }
     public bool Remove(T item)
     {
-        if(IsEmpty()) throw new InvalidOperationException();
+        if(IsEmpty) throw new InvalidOperationException();
 
         int index = IndexOf(item);
         if(index == -1) return false;
@@ -101,13 +98,11 @@ public class ArrayList<T>
     }
     public void Clear()
     {
+        Array.Clear(_items, 0, Count);
         _count = 0;
     }
 
-    public bool IsEmpty()
-    {
-        return _count == 0;
-    }
+    public bool IsEmpty => _count == 0;
     public bool Contains(T item) => IndexOf(item) != -1;
 
     public int IndexOf(T item)

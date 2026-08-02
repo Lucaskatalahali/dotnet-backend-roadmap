@@ -1,23 +1,98 @@
 ﻿using Arrays;
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("    TESTING CUSTOM ARRAYLIST (C#)       ");
+        Console.WriteLine("========================================\n");
 
-ArrayList<int> array = new(2);
+        // 1. Initializing ArrayList with low capacity (2) to test Resize
+        var list = new ArrayList<string>(2);
+        Console.WriteLine($"List created! Is Empty? {list.IsEmpty} | Count: {list.Count} | Capacity: {list.Capacity}");
 
-array.Add(10);
-array.Add(20);
-array.Add(30); // here it forces a resize (capacity was 2)
-array.Print();  // [ 10, 20, 30 ]
-Console.WriteLine();
-Console.WriteLine($"Count: {array.Count}, Capacity: {array.Capacity}");
+        // 2. Testing Add() and Dynamic Resize
+        Console.WriteLine("\n--- 1. Testing Add() & Resize ---");
+        list.Add("Alpha");
+        list.Add("Beta");
+        Console.WriteLine($"Capacity before overflow: {list.Capacity}");
 
-array.InsertAt(1, 15);
-array.Print(); // [ 10, 15, 20, 30 ]
-Console.WriteLine();
+        // Triggering Resize (Capacity should double from 2 to 4)
+        list.Add("Charlie");
+        Console.WriteLine($"Added 'Charlie'. Count: {list.Count} | Capacity: {list.Capacity} (Expected Capacity: 4)");
+        
+        Console.Write("Current List Content: ");
+        list.Print();
+        Console.WriteLine();
 
-array.RemoveAt(0);
-array.Print(); // [ 15, 20, 30 ]
-Console.WriteLine();
-Console.WriteLine($"GetAt(1): {array.GetAt(1)}");
+        // 3. Testing Indexer (this[]) and GetAt()
+        Console.WriteLine("\n--- 2. Testing Indexer & GetAt() ---");
+        Console.WriteLine($"Item at index 0: '{list[0]}'");
+        Console.WriteLine($"Item at index 2 (GetAt): '{list.GetAt(2)}'");
 
-Console.WriteLine($"IndexOf(30): {array.IndexOf(30)}");
-Console.WriteLine($"Contains(99): {array.Contains(99)}");
-Console.WriteLine($"Contains(20): {array.Contains(20)}");
+        // Modifying item via indexer
+        list[1] = "Beta Updated";
+        Console.WriteLine($"Updated index 1 to '{list[1]}'");
+
+        // 4. Testing InsertAt()
+        Console.WriteLine("\n--- 3. Testing InsertAt() ---");
+        Console.WriteLine("Inserting 'Inserted Item' at index 1...");
+        list.InsertAt(1, "Inserted Item");
+        
+        Console.Write("List Content after InsertAt: ");
+        list.Print();
+        Console.WriteLine($"\nNew Count: {list.Count}");
+
+        // 5. Testing IndexOf() and Contains()
+        Console.WriteLine("\n--- 4. Testing IndexOf() & Contains() ---");
+        Console.WriteLine($"Contains 'Charlie'? {list.Contains("Charlie")} (Expected: True)");
+        Console.WriteLine($"Index of 'Charlie': {list.IndexOf("Charlie")} (Expected: 3)");
+        Console.WriteLine($"Contains 'Zebra'? {list.Contains("Zebra")} (Expected: False)");
+
+        // 6. Testing RemoveAt() and Remove()
+        Console.WriteLine("\n--- 5. Testing RemoveAt() & Remove() ---");
+        Console.WriteLine("Removing element at index 1...");
+        list.RemoveAt(1);
+
+        Console.Write("List after RemoveAt(1): ");
+        list.Print();
+        Console.WriteLine();
+
+        Console.WriteLine("Removing item 'Charlie' directly...");
+        bool removed = list.Remove("Charlie");
+        Console.WriteLine($"'Charlie' removed? {removed}");
+
+        Console.Write("List after Remove('Charlie'): ");
+        list.Print();
+        Console.WriteLine();
+
+        // 7. Testing Clear()
+        Console.WriteLine("\n--- 6. Testing Clear() ---");
+        list.Clear();
+        Console.WriteLine($"List cleared! IsEmpty: {list.IsEmpty} | Count: {list.Count}");
+
+        // 8. Testing Exception Handling
+        Console.WriteLine("\n--- 7. Testing Exceptions ---");
+        try
+        {
+            Console.WriteLine("Attempting to access out-of-bounds index...");
+            var item = list[10];
+        }
+        catch (ArgumentOutOfRangeException ex)
+        {
+            Console.WriteLine($"[SUCCESS] Caught Exception: {ex.ParamName}");
+        }
+
+        try
+        {
+            Console.WriteLine("Attempting to Remove from an empty list...");
+            list.Remove("Alpha");
+        }
+        catch (InvalidOperationException ex)
+        {
+            Console.WriteLine($"[SUCCESS] Caught Exception on Remove: {ex.Message}");
+        }
+
+        Console.WriteLine("       ALL TESTS COMPLETED!             ");
+        Console.WriteLine("========================================");
+    }
+}
