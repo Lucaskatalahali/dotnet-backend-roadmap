@@ -144,4 +144,19 @@ public class DoublyLinkedList<T>
         }
         return txt.ToString();
     }
+
+    private class Node<TNode>
+    {
+        public TNode Data {get; }
+        public Node<TNode>? Next {get; set;}
+        public Node<TNode>? Previous {get; set;}
+
+        public Node(TNode data, Node<TNode>? next = null, Node<TNode>? previous = null)
+        {
+            Data = data;
+            Next = next;
+            Previous = previous;
+        }
+    }
+
 }
