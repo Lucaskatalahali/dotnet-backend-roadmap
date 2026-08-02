@@ -1,10 +1,12 @@
+using System.Text;
+
 namespace ArrayStack;
 
 public class ArrayStack<T>
 {
     private T[] _items; 
     private int _topOfStack;
-    //private int _size; //I will intead use array lenght property
+    //private int _size; //I will instead use array lenght property
 
     public ArrayStack(int size)
     {
@@ -32,17 +34,25 @@ public class ArrayStack<T>
         if(_topOfStack + 1 >= _items.Length)
             Resize(_items.Length * 2);
 
-        _items[_topOfStack + 1] = item;
         _topOfStack++;
+        _items[_topOfStack] = item;
     }
-    public void Pop()
+    public T Pop()
     {
         if (IsEmpty())
             throw new InvalidOperationException("It's not possible to remove elements from empty list");
 
-        _items[_topOfStack] = default!; //just for good practice, because if the type is a reference type, 
-        //Garbage Colletor may not dellete it
+        T removedItem = _items[_topOfStack];
+        _items[_topOfStack] = default!; // Clears the reference to help the Garbage Collector
         _topOfStack--;
+        return removedItem;
+    }
+    public T Top()
+    {
+        if(IsEmpty())
+            throw new InvalidOperationException("It's not possible to get elements from empty list");
+
+        return _items[_topOfStack];
     }
     public void Clear()
     {
