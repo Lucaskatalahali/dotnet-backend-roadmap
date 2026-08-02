@@ -23,7 +23,7 @@ public class ArrayStack<T>
         _items = temp;
     }
     public int Count => _topOfStack + 1;
-    public bool IsEmpty() => _topOfStack == -1;
+    public bool IsEmpty => _topOfStack == -1;
     public void Push(T item)
     {
         if(_topOfStack + 1 >= _items.Length)
@@ -51,10 +51,7 @@ public class ArrayStack<T>
     }
     public void Clear()
     {
-        while(_topOfStack != -1)
-        {
-            _items[_topOfStack] = default!;
-            _topOfStack--;
-        }
+        Array.Clear(_items, 0, Count);
+        _topOfStack = -1;
     }
 }
