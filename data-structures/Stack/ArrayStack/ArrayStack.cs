@@ -1,5 +1,3 @@
-using System.Text;
-
 namespace ArrayStack;
 
 public class ArrayStack<T>
@@ -21,10 +19,7 @@ public class ArrayStack<T>
     {
         T[] temp = new T[newSize];
 
-        for(int i = 0; i <= _topOfStack; i++)
-        {
-            temp[i] = _items[i];
-        }
+        Array.Copy(_items, 0, temp, 0, Count);
         _items = temp;
     }
     public int Count => _topOfStack + 1;
@@ -47,7 +42,7 @@ public class ArrayStack<T>
         _topOfStack--;
         return removedItem;
     }
-    public T Top()
+    public T Peek()
     {
         if(IsEmpty())
             throw new InvalidOperationException("It's not possible to get elements from empty list");
