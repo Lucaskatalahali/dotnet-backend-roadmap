@@ -34,7 +34,7 @@ public class ArrayStack<T>
     }
     public T Pop()
     {
-        if (IsEmpty())
+        if (IsEmpty)
             throw new InvalidOperationException("It's not possible to remove elements from empty list");
 
         T removedItem = _items[_topOfStack];
@@ -44,7 +44,7 @@ public class ArrayStack<T>
     }
     public T Peek()
     {
-        if(IsEmpty())
+        if(IsEmpty)
             throw new InvalidOperationException("It's not possible to get elements from empty list");
 
         return _items[_topOfStack];
