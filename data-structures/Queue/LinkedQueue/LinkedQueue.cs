@@ -36,7 +36,7 @@ public class LinkedQueue<T>
         T removedData = _head!.Data;
         _head = _head!.Next;
         _count--;
-        
+
         if(IsEmpty)
             _tail = null;
 
@@ -66,8 +66,7 @@ public class LinkedQueue<T>
             current = current.Next;
             if(current is not null)
                 Console.Write(", ");
-        }
-            
+        }  
     }
 
     private class Node<TNode> //I didn't use T as parametre because it's alreaby being used by external class
