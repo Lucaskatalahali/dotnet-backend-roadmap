@@ -31,13 +31,16 @@ public class LinkedQueue<T>
     public T Dequeue()
     {
         if(IsEmpty)
-        throw new InvalidOperationException("Can not dequeue an empty queue.");
+        throw new InvalidOperationException("Can not dequeue from an empty queue.");
 
-        T removed = _head!.Data;
+        T removedData = _head!.Data;
         _head = _head!.Next;
         _count--;
+        
+        if(IsEmpty)
+            _tail = null;
 
-        return removed;
+        return removedData;
     }
 
     public T Peek()
