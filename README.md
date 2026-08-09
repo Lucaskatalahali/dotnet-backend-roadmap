@@ -1,10 +1,10 @@
-# .NET Journey
+# .NET
 
-Learning backend development with **C#** and **.NET** through practical implementations, projects, and coding exercises.
+Backend development with **C#** and **.NET** through practical implementations and projects.
 
 ## 📚 Topics
 
-- C# (Fundamentals, OOP, LINQ, and more)
+- C# (Fundamentals, OOP, LINQ...)
 - Git & GitHub
 - Data Structures & Algorithms
 - HTTP
