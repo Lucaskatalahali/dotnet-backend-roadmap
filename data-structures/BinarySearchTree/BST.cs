@@ -1,7 +1,7 @@
 namespace BinarySearchTree;
 public class BST<T> where T : IComparable<T>
 {
-    private Node<T>? _root;
+    private Node? _root;
 
     public BST()
     {
@@ -15,9 +15,9 @@ public class BST<T> where T : IComparable<T>
         _root = AddRecursive(_root, data);
     }
 
-    private Node<T> AddRecursive(Node<T>? current , T data)
+    private Node AddRecursive(Node? current , T data)
     {
-        if(current == null) return new Node<T>(data);
+        if(current == null) return new Node(data);
 
         else if(current.Data.CompareTo(data) > 0)
             current.Left = AddRecursive(current.Left, data);
@@ -34,7 +34,7 @@ public class BST<T> where T : IComparable<T>
         _root = RemoveRecursive(_root, data);
     }
     
-    private Node<T>? RemoveRecursive(Node<T>? current, T data)
+    private Node? RemoveRecursive(Node? current, T data)
     {
         if(current is null) 
             return null;
@@ -69,9 +69,9 @@ public class BST<T> where T : IComparable<T>
         return current;
     }
 
-    private T GetMinValue(Node<T> node)
+    private T GetMinValue(Node node)
     {
-        Node<T>? current = node;
+        Node? current = node;
 
         while(current.Left is not null)
         {
@@ -85,7 +85,7 @@ public class BST<T> where T : IComparable<T>
     {
         return SearchRecursive(_root, data);
     }
-    private bool SearchRecursive(Node<T>? _current, T data)
+    private bool SearchRecursive(Node? _current, T data)
     {
         if(_current is null) 
             return false;
@@ -103,7 +103,7 @@ public class BST<T> where T : IComparable<T>
         InOrderRecursive(_root);
     }
 
-    private void InOrderRecursive(Node<T>? node)
+    private void InOrderRecursive(Node? node)
     {
         if(node is not null)
         {
@@ -118,7 +118,7 @@ public class BST<T> where T : IComparable<T>
         PreOrderRecursive(_root);
     }
 
-    private void PreOrderRecursive(Node<T>? node)
+    private void PreOrderRecursive(Node? node)
     {
         if(node is not null)
         {
@@ -133,7 +133,7 @@ public class BST<T> where T : IComparable<T>
         PostOrderRecursive(_root);
     }
 
-    private void PostOrderRecursive(Node<T>? node)
+    private void PostOrderRecursive(Node? node)
     {
         if(node is not null)
         {
@@ -148,7 +148,7 @@ public class BST<T> where T : IComparable<T>
         return Height(_root);
     }
 
-    private int Height(Node<T>? node)
+    private int Height(Node? node)
     {
         if(node is null)
             return -1;
@@ -162,13 +162,13 @@ public class BST<T> where T : IComparable<T>
     }
 
     //private class for NODE
-    private class Node<TNode> where TNode: IComparable<TNode>
+    private class Node
     {
-        public TNode Data {get; set;}
-        public Node<TNode>? Left{get; set;}
-        public Node<TNode>? Right{get; set;} 
+        public T Data {get; set;}
+        public Node? Left{get; set;}
+        public Node? Right{get; set;} 
 
-        public Node(TNode data, Node<TNode>? left = null, Node<TNode>? right = null)
+        public Node(T data, Node? left = null, Node? right = null)
         {
             Data = data;
             Left = left;
