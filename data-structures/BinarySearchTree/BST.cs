@@ -98,20 +98,67 @@ public class BST<T> where T : IComparable<T>
             : SearchRecursive(_current.Right, data);
     }
 
-    public void InOrder()
+    public void PrintInOrder()
     {
-        PrintInOrder(_root);
-        Console.WriteLine();
+        InOrderRecursive(_root);
     }
 
-    private void PrintInOrder(Node<T>? node)
+    private void InOrderRecursive(Node<T>? node)
     {
         if(node is not null)
         {
-            PrintInOrder(node.Left);
-            Console.WriteLine(node.Data);
-            PrintInOrder(node.Right);   
+            InOrderRecursive(node.Left);
+            Console.Write($"{node.Data} ");
+            InOrderRecursive(node.Right);   
         }
+    }
+
+    public void PrintPreOrder()
+    {
+        PreOrderRecursive(_root);
+    }
+
+    private void PreOrderRecursive(Node<T>? node)
+    {
+        if(node is not null)
+        {
+            Console.Write($"{node.Data} ");
+            PreOrderRecursive(node.Left);
+            PreOrderRecursive(node.Right);
+        }
+    }
+
+    public void PrintPostOrder()
+    {
+        PostOrderRecursive(_root);
+    }
+
+    private void PostOrderRecursive(Node<T>? node)
+    {
+        if(node is not null)
+        {
+            PostOrderRecursive(node.Left);
+            PostOrderRecursive(node.Right);
+            Console.Write($"{node.Data} ");
+        }
+    }
+
+    public int Height()
+    {
+        return Height(_root);
+    }
+
+    private int Height(Node<T>? node)
+    {
+        if(node is null)
+            return -1;
+
+        return 1 + Math.Max(Height(node?.Left), Height(node?.Right));
+    }
+
+    public void Clear()
+    {
+        _root = null;
     }
 
     //private class for NODE
