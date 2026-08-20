@@ -1,0 +1,55 @@
+@TodoApi_HostAddress = http://localhost:5140
+
+### 1. Criar a primeira tarefa (POST)
+
+POST {{TodoApi_HostAddress}}/todoitems
+Content-Type: application/json
+
+{
+    "name": "Aprender dotnet",
+    "isComplete" : false
+}
+
+###
+
+POST {{TodoApi_HostAddress}}/todoitems
+Content-Type: application/json
+
+{
+    "name": "Comprar Café",
+    "isComplete": true
+}
+
+###
+
+GET {{TodoApi_HostAddress}}/todoitems
+
+###
+
+GET {{TodoApi_HostAddress}}/todoitems/complete
+
+###
+
+GET {{TodoApi_HostAddress}}/todoitems/1
+
+###
+
+PUT {{TodoApi_HostAddress}}/todoitems/1
+Content-Type: application/json
+
+{
+    "name": "Apredner dotnet a fundo+",
+    "isComplete": false
+}
+
+###
+
+PATCH {{TodoApi_HostAddress}}/todoitems/1
+Content-Type: application/json
+
+{
+    "name": "Aprender Path editing"
+}
+
+###
+DELETE {{TodoApi_HostAddress}}/todoitems/1
