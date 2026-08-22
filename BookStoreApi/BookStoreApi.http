@@ -1,0 +1,85 @@
+@BookStore_HostAddress = http://localhost:5168
+
+POST {{BookStore_HostAddress}}/categories
+Content-Type: application/json
+
+{
+    "Name": "Science"
+}
+
+###
+
+GET {{BookStore_HostAddress}}/categories
+
+###
+
+GET {{BookStore_HostAddress}}/categories/5
+
+###
+
+PUT {{BookStore_HostAddress}}/categories/1
+Content-Type: application/json
+
+{
+    "Name": "Misterios"
+}
+
+###
+
+PATCH {{BookStore_HostAddress}}/categories/3
+Content-Type: application/json
+
+{
+    "Name": "Self-Help"
+}
+
+###
+
+DELETE {{BookStore_HostAddress}}/categories/4
+
+###
+
+GET {{BookStore_HostAddress}}/books
+
+###
+
+GET {{BookStore_HostAddress}}/books/4
+
+###
+
+POST {{BookStore_HostAddress}}/books
+Content-Type: application/json
+
+{
+    "Title": "A Vida",
+    "Author": "kjo",
+    "Price": 9000,
+    "CategoryId": 1,
+    "IsRead": false
+}
+
+###
+
+PUT {{BookStore_HostAddress}}/books/1
+Content-Type: application/json
+
+{
+    "Title": "Patriarcas e Profetas",
+    "Author": "Ellen G. White",
+    "Price": 3000,
+    "IsRead": true,
+    "CategoryId": 3
+}
+
+###
+
+PATCH {{BookStore_HostAddress}}/books/1
+Content-Type: application/json
+
+{
+    "Author": "Ellen White"
+}
+
+###
+
+DELETE {{BookStore_HostAddress}}/books/5
