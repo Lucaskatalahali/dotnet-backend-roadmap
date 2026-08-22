@@ -4,4 +4,4 @@ A classic Snake Game built in C# to practice OOP concepts, game loop logic, and 
 
 ## 🔗 Repository
 Source code and setup instructions are available in the dedicated repository:
-👉 **[Snake Game Repository](https://github.com/YOUR_USERNAME/snake-game)**
+👉 **[Snake Game Repository](https://github.com/Lucaskatalahali/snake-console-csharp)**
