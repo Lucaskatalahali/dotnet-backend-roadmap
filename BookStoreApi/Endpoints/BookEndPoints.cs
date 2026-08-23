@@ -88,6 +88,10 @@ public static class BookEndpoints
         {
             return TypedResults.ValidationProblem(validationResult.ToDictionary());
         }
+
+        var categoryExists = await db.Categories.AnyAsync(c => c.Id == dto.CategoryId);
+        if(!categoryExists)
+        return TypedResults.BadRequest("The specified category does not exist.");
         
         var book = await db.Books.FindAsync(id);
 
@@ -97,7 +101,9 @@ public static class BookEndpoints
         book.Author = dto.Author;
         book.Price = dto.Price;
         book.IsRead = dto.IsRead;
+
         book.CategoryId = dto.CategoryId;
+
         book.SecretNotes = dto.SecretNotes;
 
         await db.SaveChangesAsync();
@@ -107,6 +113,12 @@ public static class BookEndpoints
     
     private static async Task<IResult> PatchBook(int id, PatchBookDto dto, AppDbContext db)
     {
+         if (dto.CategoryId.HasValue)
+        {
+            var categoryExists = await db.Categories.AnyAsync(c => c.Id == dto.CategoryId.Value);
+            if (!categoryExists) return TypedResults.BadRequest("The specified category does not exist.");
+        }
+
         var book = await db.Books.FindAsync(id);
 
         if(book is null) return TypedResults.NotFound();
@@ -121,13 +133,7 @@ public static class BookEndpoints
 
         if(dto.SecretNotes is not null) book.SecretNotes = dto.SecretNotes;
 
-        if (dto.CategoryId.HasValue)
-        {
-            var categoryExists = await db.Categories.AnyAsync(c => c.Id == dto.CategoryId.Value);
-            if (!categoryExists) return TypedResults.BadRequest("Categoria informada não existe.");
-            
-            book.CategoryId = dto.CategoryId.Value;
-        }
+        if (dto.CategoryId.HasValue) book.CategoryId = dto.CategoryId.Value;
 
         await db.SaveChangesAsync();
 
