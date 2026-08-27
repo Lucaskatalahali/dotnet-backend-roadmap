@@ -39,16 +39,16 @@ public static class BookEndpoints
     }
 
 
-    private static async Task<IResult> CreateBook(CreateBookDto dto, BookService bookService, IValidator<CreateBookDto> validator)
+    private static async Task<IResult> CreateBook(CreateBookDto BookDto, BookService bookService, IValidator<CreateBookDto> validator)
     {
-        var validationResult = await validator.ValidateAsync(dto);
+        var validationResult = await validator.ValidateAsync(BookDto);
 
         if (!validationResult.IsValid)
             return TypedResults.ValidationProblem(validationResult.ToDictionary());
 
-        var book = await bookService.CreateBook(dto);
+        var book = await bookService.CreateBook(BookDto);
 
-        return TypedResults.Created($"/books/{book.Id}", book);         
+        return TypedResults.Created($"/books/{book.Id}", BookDto);         
     }
 
     private static async Task<IResult> UpdateBook(int id, UpdateBookDto dto, BookService bookService, IValidator<UpdateBookDto> validator)

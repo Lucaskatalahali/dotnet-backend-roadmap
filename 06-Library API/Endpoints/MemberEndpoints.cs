@@ -38,43 +38,43 @@ public static class MemberEndpoints
         return TypedResults.Ok(MemberDto);
     }
 
-    private static async Task<IResult> CreateMember(CreateMemberDto dto, MemberService memberservice, IValidator<CreateMemberDto> validator)
+    private static async Task<IResult> CreateMember(CreateMemberDto memberDto, MemberService memberservice, IValidator<CreateMemberDto> validator)
     {
-        var validationResult = await validator.ValidateAsync(dto);
+        var validationResult = await validator.ValidateAsync(memberDto);
 
         if(!validationResult.IsValid) 
             return TypedResults.ValidationProblem(validationResult.ToDictionary());
 
-        var member = await memberservice.CreateMember(dto);
+        var member = await memberservice.CreateMember(memberDto);
 
-        return TypedResults.Created($"/members/{member.Id}", member);
+        return TypedResults.Created($"/members/{member.Id}", memberDto);
     }
 
-    private static async Task<IResult> UpdateMember(int id, UpdateMemberDto dto, MemberService memberService, IValidator<UpdateMemberDto> validator)
+    private static async Task<IResult> UpdateMember(int id, UpdateMemberDto memberDto, MemberService memberService, IValidator<UpdateMemberDto> validator)
     {
         if(id <= 0) return TypedResults.BadRequest();
 
-        var validationResult = await validator.ValidateAsync(dto);
+        var validationResult = await validator.ValidateAsync(memberDto);
 
         if(!validationResult.IsValid) return TypedResults.ValidationProblem(validationResult.ToDictionary());
 
-        bool wasUpdated = await memberService.UpdateMember(id, dto);
+        bool wasUpdated = await memberService.UpdateMember(id, memberDto);
 
         if(!wasUpdated) return TypedResults.NotFound();
         
         return TypedResults.NoContent();
     }
 
-    private static async Task<IResult> PatchMember(int id, PatchMemberDto dto, MemberService memberService, IValidator<PatchMemberDto> validator)
+    private static async Task<IResult> PatchMember(int id, PatchMemberDto memberDto, MemberService memberService, IValidator<PatchMemberDto> validator)
     {
         if(id <= 0) return TypedResults.BadRequest();
 
-        var validationResult = await validator.ValidateAsync(dto);
+        var validationResult = await validator.ValidateAsync(memberDto);
 
         if (!validationResult.IsValid)
             return TypedResults.ValidationProblem(validationResult.ToDictionary());
 
-        bool wasPatched = await memberService.PatchMember(id, dto);
+        bool wasPatched = await memberService.PatchMember(id, memberDto);
 
         if(!wasPatched) return TypedResults.NotFound();
 

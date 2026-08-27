@@ -12,11 +12,13 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connect
 
 builder.Services.AddScoped<BookService>();
 builder.Services.AddScoped<MemberService>();
+builder.Services.AddScoped<LoanService>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 var app = builder.Build();
 
 app.MapBookEndpoints();
 app.MapMemberEndpoints();
+app.MapLoanEndpoints();
 
 app.Run();

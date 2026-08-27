@@ -88,3 +88,21 @@ Content-Type: application/json
 ###
 
 DELETE {{Library_HostAddress}}/members/9
+
+###
+
+GET {{Library_HostAddress}}/loans
+
+###
+
+GET {{Library_HostAddress}}/loans/1
+
+###
+
+POST {{Library_HostAddress}}/loans
+Content-Type: application/json
+
+{
+    "MemberId": 2,
+    "BookId": 7
+}
