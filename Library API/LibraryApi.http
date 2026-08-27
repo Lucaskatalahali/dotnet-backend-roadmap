@@ -1,0 +1,90 @@
+@Library_HostAddress = http://localhost:5013
+
+GET {{Library_HostAddress}}/books
+
+###
+
+GET {{Library_HostAddress}}/books/4
+
+###
+
+POST {{Library_HostAddress}}/books
+Content-Type: application/json
+
+{
+    "ISBN": "A-rrr3rrrrrrr",
+    "Title": "Onda",
+    "Author": "Man",
+    "PublishedYear": 2026,
+    "IsAvailable": false
+}
+
+###
+
+PUT {{Library_HostAddress}}/books/2
+Content-Type:  application/json
+
+{
+    "ISBN": "12345-6790987",
+    "Title": "Onda",
+    "Author": "Monteiro",
+    "PublishedYear": 2000,
+    "IsAvailable": false
+}
+
+###
+
+PATCH {{Library_HostAddress}}/books/1
+Content-Type: application/json
+
+{
+    "ISBN": "asdf123456789",
+    "Title": " Isaac"
+}
+
+###
+
+DELETE {{Library_HostAddress}}/books/5
+
+###
+
+GET {{Library_HostAddress}}/members
+
+###
+
+GET {{Library_HostAddress}}/members/3
+
+###
+
+POST {{Library_HostAddress}}/members
+Content-Type: application/json
+
+{
+    "Name":"a",
+    "Email": "e@com"
+}
+
+###
+
+PUT {{Library_HostAddress}}/members/9
+Content-Type: application/json
+
+{
+    "Name": "kjh",
+    "Email": "test@gmail.com"
+}
+
+###
+
+PATCH {{Library_HostAddress}}/members/1
+Content-Type: application/json
+
+{
+    "Name": "Patch name 2",
+    "Email": "path2.test@gmail.com",
+    "Id": "23"
+}
+
+###
+
+DELETE {{Library_HostAddress}}/members/9

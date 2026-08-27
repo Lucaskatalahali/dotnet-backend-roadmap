@@ -11,7 +11,7 @@ public class UpdateBookDtoValidator : AbstractValidator<UpdateBookDto>
     {
         RuleFor(x => x.Title)
             .NotEmpty().WithMessage("Title is required.")
-            .MaximumLength(50).WithMessage("The title cannot exceed 10 characters.");
+            .MaximumLength(50).WithMessage("The title cannot exceed 50 characters.");
 
         RuleFor(x => x.Price)
             .GreaterThan(0).WithMessage("Price must be greater than zero.")
