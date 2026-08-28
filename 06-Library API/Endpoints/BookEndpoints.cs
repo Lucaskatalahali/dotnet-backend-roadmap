@@ -46,9 +46,9 @@ public static class BookEndpoints
         if (!validationResult.IsValid)
             return TypedResults.ValidationProblem(validationResult.ToDictionary());
 
-        var book = await bookService.CreateBook(BookDto);
+        var bookResponseDto = await bookService.CreateBook(BookDto);
 
-        return TypedResults.Created($"/books/{book.Id}", BookDto);         
+        return TypedResults.Created($"/books/{bookResponseDto.Id}", bookResponseDto);         
     }
 
     private static async Task<IResult> UpdateBook(int id, UpdateBookDto dto, BookService bookService, IValidator<UpdateBookDto> validator)

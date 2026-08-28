@@ -1,108 +1,160 @@
 @Library_HostAddress = http://localhost:5013
 
+### =========================
+### BOOKS
+### =========================
+
+### Get all books
 GET {{Library_HostAddress}}/books
 
 ###
 
-GET {{Library_HostAddress}}/books/4
+### Get book by ID
+GET {{Library_HostAddress}}/books/0
 
 ###
 
+### Create book
 POST {{Library_HostAddress}}/books
 Content-Type: application/json
 
 {
-    "ISBN": "A-rrr3rrrrrrr",
-    "Title": "Onda",
-    "Author": "Man",
-    "PublishedYear": 2026,
-    "IsAvailable": false
+    "ISBN": "97885G5902778",
+    "Title": "Matematica",
+    "Author": "Prof Pedro",
+    "PublishedYear": 2000,
+    "IsAvailable": true
 }
 
 ###
 
+### Update book
 PUT {{Library_HostAddress}}/books/2
-Content-Type:  application/json
+Content-Type: application/json
 
 {
-    "ISBN": "12345-6790987",
-    "Title": "Onda",
-    "Author": "Monteiro",
-    "PublishedYear": 2000,
-    "IsAvailable": false
+    "ISBN": "9780061120084",
+    "Title": "To Kill a Mockingbird",
+    "Author": "Harper Lee",
+    "PublishedYear": 1960,
+    "IsAvailable": true
 }
 
 ###
 
+### Patch book
 PATCH {{Library_HostAddress}}/books/1
 Content-Type: application/json
 
 {
-    "ISBN": "asdf123456789",
-    "Title": " Isaac"
+    "Title": "Dom Casmurro",
+    "Author": "Machado de Assis"
 }
 
 ###
 
+### Delete book
 DELETE {{Library_HostAddress}}/books/5
+
+
+### =========================
+### MEMBERS
+### =========================
 
 ###
 
+### Get all members
 GET {{Library_HostAddress}}/members
 
 ###
 
+### Get member by ID
 GET {{Library_HostAddress}}/members/3
 
 ###
 
+### Create member
 POST {{Library_HostAddress}}/members
 Content-Type: application/json
 
 {
-    "Name":"a",
-    "Email": "e@com"
+    "Name": "Lucas Almeida",
+    "Email": "lucas.almeida@gmail.com"
 }
 
 ###
 
-PUT {{Library_HostAddress}}/members/9
+### Update member
+PUT {{Library_HostAddress}}/members/1
 Content-Type: application/json
 
 {
-    "Name": "kjh",
-    "Email": "test@gmail.com"
+    "Name": "Mariana Oliveira",
+    "Email": "mariana.oliveira@gmail.com"
 }
 
 ###
 
+### Patch member
 PATCH {{Library_HostAddress}}/members/1
 Content-Type: application/json
 
 {
-    "Name": "Patch name 2",
-    "Email": "path2.test@gmail.com",
-    "Id": "23"
+    "Name": "Rafael Santos"
 }
 
 ###
 
+### Delete member
 DELETE {{Library_HostAddress}}/members/9
+
+
+### =========================
+### LOANS
+### =========================
 
 ###
 
+### Get all loans
 GET {{Library_HostAddress}}/loans
 
 ###
 
+### Get loan by ID
 GET {{Library_HostAddress}}/loans/1
 
 ###
 
+### Create loan
 POST {{Library_HostAddress}}/loans
 Content-Type: application/json
 
 {
     "MemberId": 2,
-    "BookId": 7
+    "BookId": 1
 }
+
+###
+
+### Patch loan - extend due date
+PATCH {{Library_HostAddress}}/loans/1
+Content-Type: application/json
+
+{
+    "DueDate": "2026-09-20T17:12:12Z"
+}
+
+###
+
+### Patch loan - return book
+PATCH {{Library_HostAddress}}/loans/1
+Content-Type: application/json
+
+{
+    "ReturnedAt": "2026-08-27T14:30:00Z"
+}
+
+###
+
+### Delete loan
+DELETE {{Library_HostAddress}}/loans/2

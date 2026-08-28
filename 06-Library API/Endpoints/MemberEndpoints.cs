@@ -45,9 +45,9 @@ public static class MemberEndpoints
         if(!validationResult.IsValid) 
             return TypedResults.ValidationProblem(validationResult.ToDictionary());
 
-        var member = await memberservice.CreateMember(memberDto);
+        var memberResponseDto = await memberservice.CreateMember(memberDto);
 
-        return TypedResults.Created($"/members/{member.Id}", memberDto);
+        return TypedResults.Created($"/members/{memberResponseDto.Id}", memberResponseDto);
     }
 
     private static async Task<IResult> UpdateMember(int id, UpdateMemberDto memberDto, MemberService memberService, IValidator<UpdateMemberDto> validator)

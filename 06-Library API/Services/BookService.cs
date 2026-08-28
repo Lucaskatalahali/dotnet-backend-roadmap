@@ -14,7 +14,7 @@ public class BookService
         _db = db;
     } 
 
-    public async Task<Book> CreateBook(CreateBookDto dto)
+    public async Task<BookResponseDto> CreateBook(CreateBookDto dto)
     {
         var book = new Book
         {
@@ -27,7 +27,9 @@ public class BookService
         _db.Books.Add(book);
         await _db.SaveChangesAsync();
 
-        return book;
+        return new BookResponseDto(
+            book.Id, book.ISBN, book.Title, book.Author, book.PublishedYear, book.IsAvailable
+        );
     }
 
     public async Task<List<BookResponseDto>> GetAllBooks()

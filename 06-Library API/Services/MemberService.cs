@@ -42,7 +42,7 @@ public class MemberService
         );
     }
 
-    public async Task<Member> CreateMember(CreateMemberDto dto)
+    public async Task<MemberResponseDto> CreateMember(CreateMemberDto dto)
     {
         var member = new Member{
             Name = dto.Name,
@@ -53,7 +53,7 @@ public class MemberService
         _db.Members.Add(member);
         await _db.SaveChangesAsync();
 
-        return member;        
+        return new MemberResponseDto(member.Id, member.Name, member.Email, member.MembershipDate);        
     }
 
     public async Task<bool> UpdateMember(int id, UpdateMemberDto dto)
