@@ -29,7 +29,7 @@ public static class BookEndpoints
 
     private static async Task<IResult> GetBook(int id, BookService bookService)
     {
-        if(id <= 0) return TypedResults.BadRequest();
+        if(id <= 0) return TypedResults.BadRequest("Book id must be grater than zero");
 
         var bookDto = await bookService.GetBook(id);
 

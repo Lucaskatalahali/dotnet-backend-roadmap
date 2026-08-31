@@ -10,7 +10,7 @@ GET {{Library_HostAddress}}/books
 ###
 
 ### Get book by ID
-GET {{Library_HostAddress}}/books/0
+GET {{Library_HostAddress}}/books/1
 
 ###
 

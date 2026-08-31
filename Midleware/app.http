@@ -1,0 +1,8 @@
+
+
+POST http://localhost:5249/books
+X-API-Key: admin123
+
+###
+
+GET http://localhost:5249
