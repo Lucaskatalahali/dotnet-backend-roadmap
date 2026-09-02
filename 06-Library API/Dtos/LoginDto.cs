@@ -1,7 +1,6 @@
 namespace Library_API.Dtos;
 
-public record CreateMemberDto(
-    string Name,
+public record LoginDto(
     string Email,
     string Password
 );

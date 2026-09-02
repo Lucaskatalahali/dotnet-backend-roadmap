@@ -10,9 +10,14 @@ public static class BookEndpoints
     {
         var group = app.MapGroup("/books");
 
-        group.MapGet("/", GetAllBooks);
+        group.MapGet("/", GetAllBooks)
+        .RequireAuthorization();
+
         group.MapGet("/{id}", GetBook);
-        group.MapPost("/", CreateBook);
+
+        group.MapPost("/", CreateBook)
+            .RequireAuthorization(policy => policy.RequireRole("Admin"));
+
         group.MapPut("/{id}", UpdateBook);
         group.MapPatch("/{id}", PatchBook);
         group.MapDelete("/{id}", DeleteBook);
@@ -20,7 +25,7 @@ public static class BookEndpoints
         return group;
     }
 
-    private static async Task<IResult> GetAllBooks(BookService bookService)
+    private static async Task<IResult> GetAllBooks(BookService bookService, HttpContext httpContext)
     {
         var books = await bookService.GetAllBooks();
 

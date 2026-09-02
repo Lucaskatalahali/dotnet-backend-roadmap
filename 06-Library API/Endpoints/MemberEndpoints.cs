@@ -17,7 +17,33 @@ public static class MemberEndpoints
         group.MapPatch("/{id}", PatchMember);
         group.MapDelete("/{id}", DeleteMember);
 
+        group.MapPost("/auth/login", Login);
+
         return group;
+    }
+
+    private static async Task<IResult> Login(
+        LoginDto dto,
+        MemberService memberService,
+        IValidator<LoginDto> validator,
+        TokenService tokenService
+        )
+    {
+        var validationResult = await validator.ValidateAsync(dto);
+
+        if(!validationResult.IsValid) 
+            return TypedResults.ValidationProblem(validationResult.ToDictionary());
+
+        var member = await memberService.Login(dto);
+
+        if(member is null) return TypedResults.Problem(
+            detail: "Invalid email or password",
+            statusCode: StatusCodes.Status401Unauthorized
+        );
+
+        var token = tokenService.GenerateToken(member);
+
+        return TypedResults.Ok(new {token});
     }
 
     private static async Task<IResult> GetAllMembers(MemberService memberService)

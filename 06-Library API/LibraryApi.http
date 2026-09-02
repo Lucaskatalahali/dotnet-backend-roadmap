@@ -7,6 +7,10 @@
 ### Get all books
 GET {{Library_HostAddress}}/books
 
+### Get all books with JWT
+GET {{Library_HostAddress}}/books
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwiZW1haWwiOiJydWZpbm9AZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiTWVtYmVyIiwiZXhwIjoxNzg4MzYzMTQyfQ.6u67aE6oB4y8QziStBDWDJMeuLv9_XwnTBkzpAydwJ0
+
 ###
 
 ### Get book by ID
@@ -16,13 +20,14 @@ GET {{Library_HostAddress}}/books/1
 
 ### Create book
 POST {{Library_HostAddress}}/books
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwiZW1haWwiOiJydWZpbm9AZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3ODgzNjU4NzJ9.i9ay9sXIQkMiU_IEhtMtOllOq8E-VvC5KvuQg-219iQ
 Content-Type: application/json
 
 {
-    "ISBN": "97885G5902778",
-    "Title": "Matematica",
-    "Author": "Prof Pedro",
-    "PublishedYear": 2000,
+    "ISBN": "1787587902778",
+    "Title": "Geologia",
+    "Author": "Marcos",
+    "PublishedYear": 1999,
     "IsAvailable": true
 }
 
@@ -63,6 +68,16 @@ DELETE {{Library_HostAddress}}/books/5
 
 ###
 
+POST {{Library_HostAddress}}/members/auth/login
+Content-Type: application/json
+
+{
+    "Email": "rufino@gmail.com",
+    "Password": "123456"
+}
+
+###
+
 ### Get all members
 GET {{Library_HostAddress}}/members
 
@@ -78,8 +93,9 @@ POST {{Library_HostAddress}}/members
 Content-Type: application/json
 
 {
-    "Name": "Lucas Almeida",
-    "Email": "lucas.almeida@gmail.com"
+    "Name": "Rufino",
+    "Email": "rufino@gmail.com",
+    "PassWord": "123456"
 }
 
 ###

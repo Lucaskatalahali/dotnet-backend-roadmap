@@ -1,7 +1,9 @@
 using Library_API.Data;
 using Library_API.Dtos;
 using Library_API.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Npgsql.Internal;
 
 namespace Library_API.Services;
 
@@ -12,6 +14,25 @@ public class MemberService
     public MemberService(AppDbContext db)
     {
         _db = db;   
+    }
+
+    public async Task<Member?> Login(LoginDto dto)
+    {
+        var member = await _db.Members.FirstOrDefaultAsync(x => x.Email == dto.Email);
+
+        if(member is null) return null;
+
+        var hasher = new PasswordHasher<Member>();
+
+        var result = hasher.VerifyHashedPassword(
+            member, 
+            member.PasswordHash,
+            dto.Password
+        );
+
+        return result == PasswordVerificationResult.Success
+            ? member
+            : null;
     }
 
     public async Task<List<MemberResponseDto>> GetAllMembers()
@@ -49,6 +70,9 @@ public class MemberService
             Email = dto.Email,
             MembershipDate = DateTime.UtcNow
         };
+
+        var hasher = new PasswordHasher<Member>();
+        member.PasswordHash = hasher.HashPassword(member, dto.Password);
 
         _db.Members.Add(member);
         await _db.SaveChangesAsync();

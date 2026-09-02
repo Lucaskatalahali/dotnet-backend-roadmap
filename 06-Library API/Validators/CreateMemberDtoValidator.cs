@@ -13,6 +13,10 @@ public class CreateMemberDtoValidator : AbstractValidator<CreateMemberDto>
 
         RuleFor(m => m.Email)
             .NotEmpty().WithMessage("Email cannot be empty")
-            .EmailAddress().WithMessage("A valid email is required.");       
+            .EmailAddress().WithMessage("A valid email is required.");    
+
+        RuleFor(m => m.Password)
+            .NotEmpty().WithMessage("Password cannot be empty.")
+            .Length(6).WithMessage("Password must have 6 caracters"); 
     }
 }

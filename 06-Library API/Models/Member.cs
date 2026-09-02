@@ -6,4 +6,6 @@ public class Member
     public required string Name {get; set;}
     public required string Email {get; set;}
     public DateTime MembershipDate  {get; set;}
+    public string Role {get; set;} = "Member";
+    public string PasswordHash {get; set;} = string.Empty;
 }
